@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "868873101597",
+    "project_id": "chromatica-dce43",
+    "storage_bucket": "chromatica-dce43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868873101597:android:02a9b584b39bb1267881f4",
+        "android_client_info": {
+          "package_name": "com.example.chromatica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868873101597-hrmu0t9emtpniiv2cvi0fep0v2k45593.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBxrJqgcK5wRvPfSRzToZN73M8vXmy39M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868873101597-hrmu0t9emtpniiv2cvi0fep0v2k45593.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
