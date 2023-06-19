@@ -124,10 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
               smallGap(),
               Row(mainAxisAlignment: MainAxisAlignment.center, children:  [
                 MySquareTile(imagePath: "lib/images/google.png", onTap: () => AuthService().signInWithGoogle()),
-                SizedBox(
-                  width: 30,
-                ),
-                MySquareTile(imagePath: "lib/images/apple.png",onTap: () => AuthService().signInWithGoogle(),),
+                
               ]),
               mediumGap(),
               Row(

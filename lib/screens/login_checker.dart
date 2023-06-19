@@ -1,5 +1,6 @@
 import 'package:chromatica/screens/home_screen.dart';
 import 'package:chromatica/screens/login_or_register.dart';
+import 'package:chromatica/screens/nav_bar.dart';
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
 
@@ -14,7 +15,7 @@ class LoginChecker  extends StatelessWidget {
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData) {
-            return const HomeScreen();
+            return const NavBar();
           }
             
           // user is NOT logged in

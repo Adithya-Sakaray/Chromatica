@@ -3,7 +3,6 @@ import 'package:chromatica/components/my_button.dart';
 import 'package:chromatica/components/my_textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../components/my_alertbox.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -35,7 +34,6 @@ class ForgotPasswordScreen extends StatelessWidget {
     }
 
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,

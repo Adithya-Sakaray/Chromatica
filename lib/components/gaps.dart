@@ -24,3 +24,10 @@ TextStyle font1() {
     fontSize: 16,
   );
 }
+
+TextStyle font1b() {
+  return  const TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+  );
+}
