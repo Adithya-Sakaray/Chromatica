@@ -23,10 +23,7 @@ class _NavBarState extends State<NavBar> {
   }
   final List <Widget> pages = [HomeScreen(),LikeScreen(),ProfileScreen()];
 
-  void initState() {
-    super.initState();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
