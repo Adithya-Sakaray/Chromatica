@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chromatica/controller/image_controller.dart';
-import 'package:chromatica/model/image_model.dart';
-import 'package:chromatica/screens/profile_screen.dart';
 import 'package:chromatica/screens/search_screen.dart';
 import 'package:chromatica/screens/single_image_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
 class HomeScreen  extends StatefulWidget {

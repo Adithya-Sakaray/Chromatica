@@ -39,12 +39,12 @@ class ProfileContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("$title",style: font1b(),),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text("$text",style: font1(),),
               ],
             ),
 
-            Spacer(),
+            const Spacer(),
 
             GestureDetector(
               onTap: () {

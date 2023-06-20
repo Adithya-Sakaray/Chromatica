@@ -1,4 +1,3 @@
-import 'package:chromatica/screens/home_screen.dart';
 import 'package:chromatica/screens/login_or_register.dart';
 import 'package:chromatica/screens/nav_bar.dart';
 import "package:flutter/material.dart";
