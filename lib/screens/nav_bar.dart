@@ -1,6 +1,8 @@
+import 'package:chromatica/controller/image_controller.dart';
 import 'package:chromatica/screens/home_screen.dart';
 import 'package:chromatica/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'like_screen.dart';
 
@@ -20,6 +22,10 @@ class _NavBarState extends State<NavBar> {
     });
   }
   final List <Widget> pages = [HomeScreen(),LikeScreen(),ProfileScreen()];
+
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

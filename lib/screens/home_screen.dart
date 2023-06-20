@@ -35,8 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _scrollListener() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 50) {
       // User reached the end of the list
       // Append more data to the list here
       if(!isLoaded){
@@ -80,9 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
       backgroundColor: Theme.of(context).colorScheme.background,
 
-      body: SafeArea(child: AlignedLayout(context)),
+      body: SafeArea(child: Obx( () =>  AlignedLayout(context))),
     );  }
 
+    // ignore: non_constant_identifier_names
     Widget AlignedLayout(BuildContext context) {
       return  Padding(
         padding: const EdgeInsets.all(10),

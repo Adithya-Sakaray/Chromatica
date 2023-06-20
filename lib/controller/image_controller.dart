@@ -12,18 +12,12 @@ class ImageController extends GetxController {
   var client = http.Client();
   var currentImage = <Map>[];
 
-  @override
-  void onInit() async {
-    fetchImages();
-    fetchImages();
-    fetchImages();
-    super.onInit();
 
-  }
 
   void fetchImages() async {
     var images = await RemoteServices.fetchImages(pageindex);
     pageindex += 1;
+    print(pageindex);
     if(images.isNotEmpty){
       imageList.addAll(images);
     }
