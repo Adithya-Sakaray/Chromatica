@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chromatica/components/gaps.dart';
-import 'package:chromatica/components/my_button.dart';
+import 'package:chromatica/controller/image_controller.dart';
+import 'package:chromatica/model/image_model.dart';
 import 'package:chromatica/screens/profile_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chromatica/screens/single_image_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import "";
 
 class HomeScreen  extends StatefulWidget {
   const HomeScreen ({super.key});
@@ -16,32 +17,9 @@ class HomeScreen  extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  List <String> images = [
-    
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
+  final ImageController imageController = Get.put(ImageController());
 
-  ];
-
-  
+  var isLoaded = false;  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
-            child: Padding(
-              padding: const EdgeInsets.all(10),
+            child:const  Padding(
+              padding:  EdgeInsets.all(10),
               child: Icon(Icons.account_circle_sharp,size: 30,),
             )
           )
@@ -74,26 +52,21 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            itemCount: images.length, 
+            itemCount: imageController.imageList.length, 
             itemBuilder: (context,index) {
-              if (index > images.length - 5){
-                print("hwllo");
-                images.addAll([
-                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-                ]);
-              }
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  imageUrl: images[index],
-                  height: 200,
-                  placeholder: (context, url) => const Center(child: CircularProgressIndicator(),),
-                  fit: BoxFit.cover,
+              
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SingleImageScreen(url: imageController.imageList[index].urls.regular,)));
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: CachedNetworkImage(
+                    imageUrl:  imageController.imageList[index].urls.small,
+                    height: 200,
+                    placeholder: (context, url) => const Center(child: CircularProgressIndicator(),),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               );
             }
