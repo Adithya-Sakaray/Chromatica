@@ -16,9 +16,10 @@ class ProfileScreen  extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
-        title: Text("Profile"),
+        title: Text("Profile",style: TextStyle(fontSize: 25),),
         actions: [
           GestureDetector(
             onTap: () => signOutUser(),

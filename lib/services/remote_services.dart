@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/image_model.dart';
@@ -10,7 +11,7 @@ class RemoteServices {
   
 
 
-  static Future<List<ImageModel>> fetchImages(int pageNum) async {
+  static Future<List<ImageModel>> fetchImages(RxInt pageNum) async {
     String accessKey = "cMloi2Zulu0j_z0PazJuXEPCEnxuofaWilWKfQbjT3k";
     var data = <ImageModel>[];
     var client = http.Client();

@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chromatica/controller/image_controller.dart';
 import 'package:chromatica/model/image_model.dart';
 import 'package:chromatica/screens/profile_screen.dart';
+import 'package:chromatica/screens/search_screen.dart';
 import 'package:chromatica/screens/single_image_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import "";
 
 class HomeScreen  extends StatefulWidget {
   const HomeScreen ({super.key});
@@ -18,8 +18,49 @@ class HomeScreen  extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final ImageController imageController = Get.put(ImageController());
+  final ScrollController _scrollController = ScrollController();
 
   var isLoaded = false;  
+
+  
+  @override
+  void initState() {
+    super.initState();
+    // Attach scroll listener when the widget is initialized
+    _scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    // Dispose the scroll controller to avoid memory leaks
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      // User reached the end of the list
+      // Append more data to the list here
+      if(!isLoaded){
+        fetchMoreData();
+      }
+      
+    }
+  }
+
+  Future<void> fetchMoreData() async {
+    if (!isLoaded) {
+      setState(() {
+        isLoaded = true;
+      });
+       imageController.fetchImages();
+      setState(() {
+        isLoaded = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));
             },
             child:const  Padding(
               padding:  EdgeInsets.all(10),
-              child: Icon(Icons.account_circle_sharp,size: 30,),
+              child: Icon(Icons.search,size: 30,),
             )
           )
         ],
@@ -48,10 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget AlignedLayout(BuildContext context) {
       return  Padding(
         padding: const EdgeInsets.all(10),
-        child: AlignedGridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+        child: GridView.builder(
+            controller: _scrollController,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ), 
+            
             itemCount: imageController.imageList.length, 
             itemBuilder: (context,index) {
               
