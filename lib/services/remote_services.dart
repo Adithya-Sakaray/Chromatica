@@ -12,7 +12,7 @@ class RemoteServices {
 
 
   static Future<List<ImageModel>> fetchImages(int pageNum) async {
-    String accessKey = "cMloi2Zulu0j_z0PazJuXEPCEnxuofaWilWKfQbjT3k";
+    String accessKey = "XXXXXXXXXXXXXXXXXXXXX";
     var data = <ImageModel>[];
     var client = http.Client();
     var url = Uri.parse("https://api.unsplash.com/photos/?client_id=$accessKey&per_page=30&page=$pageNum&order_by=popular");
@@ -27,7 +27,7 @@ class RemoteServices {
   }
 
   static Future<List> fetchSearchResults(String query)async {
-    String accessKey = "cMloi2Zulu0j_z0PazJuXEPCEnxuofaWilWKfQbjT3k";
+    String accessKey = "XXXXXXXXXXXXXXXXXXXXX";
     var data = <Map>[];
     var client = http.Client();
 
@@ -45,7 +45,7 @@ class RemoteServices {
   }
 
   static Future<Map> fetchSingleImage(String id) async {
-    String accessKey = "cMloi2Zulu0j_z0PazJuXEPCEnxuofaWilWKfQbjT3k";
+    String accessKey = "XXXXXXXXXXXXXXXXXXXXX";
     var client = http.Client();
     var url = Uri.parse("https://api.unsplash.com/photos/$id/?client_id=$accessKey");
     var response = await client.get(url);
