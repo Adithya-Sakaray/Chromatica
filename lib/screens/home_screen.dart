@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
   var isLoaded = false;  
+  var pageNum = 0;
 
   
   @override
@@ -49,9 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> fetchMoreData() async {
     if (!isLoaded) {
       setState(() {
+        pageNum += 1;
         isLoaded = true;
+        imageController.fetchImages(pageNum);
       });
-       imageController.fetchImages();
+       
       setState(() {
         isLoaded = false;
       });
@@ -60,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    imageController.fetchImages(pageNum);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Chromatica"),
@@ -100,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SingleImageScreen(url: imageController.imageList[index].urls.regular,)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SingleImageScreen(regularUrl: imageController.imageList[index].urls.regular,smallUrl: imageController.imageList[index].urls.small,)));
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),

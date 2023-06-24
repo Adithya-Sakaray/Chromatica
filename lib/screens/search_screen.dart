@@ -14,7 +14,9 @@ class SearchScreen  extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(5),
-          child: Column(),
+          child: Column(
+            
+          ),
         ),
       ),
     );

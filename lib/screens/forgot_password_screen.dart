@@ -11,7 +11,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final _forgotEmailController = TextEditingController();
+    final forgotEmailController = TextEditingController();
 
      void showAlertBox(String text) {
     showDialog(context: context, builder: (context) {
@@ -24,9 +24,8 @@ class ForgotPasswordScreen extends StatelessWidget {
       try {
         showAlertBox("Password reset link sent to your email sucessfully!");
        await FirebaseAuth.instance
-    .sendPasswordResetEmail(email: _forgotEmailController.text);
-
-      
+    .sendPasswordResetEmail(email: forgotEmailController.text);
+        Navigator.pop(context);
       } catch (e) {
         showAlertBox(e.toString());
       }
@@ -50,7 +49,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
               mediumGap(),
 
-              MyTextfield(controller: _forgotEmailController, hintText: "E-Mail", shouldObscureText: false),
+              MyTextfield(controller: forgotEmailController, hintText: "E-Mail", shouldObscureText: false),
 
               mediumGap(),
 

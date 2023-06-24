@@ -11,12 +11,11 @@ class RemoteServices {
   
 
 
-  static Future<List<ImageModel>> fetchImages(RxInt pageNum) async {
+  static Future<List<ImageModel>> fetchImages(int pageNum) async {
     String accessKey = "cMloi2Zulu0j_z0PazJuXEPCEnxuofaWilWKfQbjT3k";
     var data = <ImageModel>[];
     var client = http.Client();
-    var url = Uri.parse("https://api.unsplash.com/photos/?client_id=$accessKey&per_page=30&page=$pageNum");
-
+    var url = Uri.parse("https://api.unsplash.com/photos/?client_id=$accessKey&per_page=30&page=$pageNum&order_by=popular");
     var response = await client.get(url);
     if (response.statusCode == 200) {
       var json = response.body;

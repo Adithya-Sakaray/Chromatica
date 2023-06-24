@@ -19,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  var isLoading = false;
 
   void showAlertBox(String text) {
     showDialog(context: context, builder: (context) {
@@ -28,13 +29,28 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void loginUser() async {
     try {
+
+      setState(() {
+        isLoading = true;
+      });
+
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text, password: _passwordController.text);
+
+      setState(() {
+        isLoading = false;
+      });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         showAlertBox('No user found for that email.');
+        setState(() {
+        isLoading = false;
+      });
       } else if (e.code == 'wrong-password') {
         showAlertBox('Wrong password provided for that user.');
+        setState(() {
+        isLoading = false;
+      });
       }
     }
   }
@@ -97,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   )),
               smallGap(),
               GestureDetector(
-                  onTap: loginUser, child: myButton("Login", context)),
+                  onTap: loginUser, child: isLoading? const CircularProgressIndicator() : myButton("Login", context)),
               mediumGap(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),

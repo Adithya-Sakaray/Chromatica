@@ -31,9 +31,9 @@ class _NavBarState extends State<NavBar> {
         currentIndex: selectedIndex,
         backgroundColor: Theme.of(context).colorScheme.primary,
         onTap: setIndex,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.heart_broken),label: "Liked"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite),label: "Liked"),
           BottomNavigationBarItem(icon: Icon(Icons.account_circle),label: "Profile")
 
         ],
