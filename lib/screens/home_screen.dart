@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chromatica/components/my_small_container.dart';
 import 'package:chromatica/controller/image_controller.dart';
 import 'package:chromatica/screens/search_screen.dart';
 import 'package:chromatica/screens/single_image_screen.dart';
@@ -91,33 +92,67 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget AlignedLayout(BuildContext context) {
       return  Padding(
         padding: const EdgeInsets.all(10),
-        child: GridView.builder(
-            controller: _scrollController,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ), 
-            
-            itemCount: imageController.imageList.length, 
-            itemBuilder: (context,index) {
-              
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SingleImageScreen(regularUrl: imageController.imageList[index].urls.regular,smallUrl: imageController.imageList[index].urls.small,)));
-                },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: CachedNetworkImage(
-                    imageUrl:  imageController.imageList[index].urls.small,
-                    height: 200,
-                    placeholder: (context, url) => const Center(child: CircularProgressIndicator(),),
-                    fit: BoxFit.cover,
+        child: Column(
+          children: [
+            // SingleChildScrollView(
+            //   scrollDirection: Axis.horizontal,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [
+            //       MySmallContainer(text: "Home"),
+            //       SizedBox(width: 10,),
+            //       MySmallContainer(text: "Home"),
+            //       SizedBox(width: 10,),
+            //       MySmallContainer(text: "Home"),
+            //       SizedBox(width: 10,),
+            //       MySmallContainer(text: "Home"),
+            //       SizedBox(width: 10,),
+            //       MySmallContainer(text: "Home"),
+            //       SizedBox(width: 10,),
+            //       MySmallContainer(text: "Home"),
+            //       SizedBox(width: 10,),
+            //       MySmallContainer(text: "Home"),
+            //       SizedBox(width: 10,),
+            //       MySmallContainer(text: "Home"),
+            //     ],
+            //   ),
+            // ),
+            //SizedBox(height: 10,),
+            Expanded(
+              child: Container(
+                child: GridView.builder(
+                    controller: _scrollController,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  childAspectRatio: 0.60,
+                ), 
+                    
+                    itemCount: imageController.imageList.length, 
+                    itemBuilder: (context,index) {
+                      
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> SingleImageScreen(regularUrl: imageController.imageList[index].urls.regular,smallUrl: imageController.imageList[index].urls.small,)));
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: CachedNetworkImage(
+                            imageUrl:  imageController.imageList[index].urls.small,
+                            height: 280,
+                            placeholder: (context, url) => const Center(child: CircularProgressIndicator(),),
+                            key: UniqueKey(),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    }
                   ),
-                ),
-              );
-            }
-          ),
+              ),
+            ),
+          ],
+        ),
       );
     }
 }

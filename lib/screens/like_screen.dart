@@ -57,8 +57,9 @@ class _LikeScreenState extends State<LikeScreen> {
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          childAspectRatio: 0.60
         ), 
             
             itemCount:liked_small.length, 
@@ -71,10 +72,11 @@ class _LikeScreenState extends State<LikeScreen> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: CachedNetworkImage(
+                    height: 280,
                     imageUrl:  liked_small[index],
-                    height: 200,
                     placeholder: (context, url) => const Center(child: CircularProgressIndicator(),),
                     fit: BoxFit.cover,
+                    key: UniqueKey(),
                   ),
                 ),
               );

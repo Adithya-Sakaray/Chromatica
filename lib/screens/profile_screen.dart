@@ -1,5 +1,6 @@
 import 'package:chromatica/components/gaps.dart';
 import 'package:chromatica/components/profile_container.dart';
+import 'package:chromatica/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  
+  final AuthService authService = AuthService();
 
   bool isLoaded = false;
   Map<String, dynamic>? userData;
@@ -38,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
     } else {
       userData = {
-        "name": "Name","email":"abc@gmail.com"
+        "name": "Your Name","email":"abc@gmail.com"
       };
     }
   }
@@ -102,7 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       smallGap(),
                       ProfileContainer(
-                        title: "Likes",
+                        title: "Liked",
                         text: userData!["liked-small"]?.length.toString(),
                         icon: Icons.favorite,
                         shouldShowEdit: false,

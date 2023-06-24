@@ -7,7 +7,7 @@ class ImageController extends GetxController {
 
 
   var imageList = <ImageModel>[].obs;
-  var searchResults = [].obs;
+  var searchResult = [].obs;
   var client = http.Client();
   var currentImage = <Map>[];
 
@@ -23,8 +23,8 @@ class ImageController extends GetxController {
   void fetchSearchResults(String query) async {
     var images = await RemoteServices.fetchSearchResults(query);
     if(images.isNotEmpty){
-      searchResults.clear();
-      searchResults.addAll(images);
+      searchResult.clear();
+      searchResult.addAll(images);
     }
   }
 

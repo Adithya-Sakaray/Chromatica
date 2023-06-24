@@ -1,4 +1,7 @@
 import 'package:chromatica/components/gaps.dart';
+import 'package:chromatica/screens/update_email_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class ProfileContainer extends StatelessWidget {
@@ -6,6 +9,7 @@ class ProfileContainer extends StatelessWidget {
   final shouldShowEdit;
   final text;
   final title;
+
   IconData icon;
    ProfileContainer({
     required this.shouldShowEdit,
@@ -49,7 +53,7 @@ class ProfileContainer extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if(shouldShowEdit){
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateUserEmailScreen()));
                 } 
               },
               child:  Padding(
@@ -66,4 +70,6 @@ class ProfileContainer extends StatelessWidget {
       ),
     );
   }
+  
+  
 }

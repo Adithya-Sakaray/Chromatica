@@ -36,8 +36,9 @@ class RemoteServices {
 
     if(response.statusCode == 200) {
       var json = response.body;
-      data = jsonDecode(json);
-      return data;
+      var data = jsonDecode(json);
+      var returnData = data["results"];
+      return returnData;
     } else {
       return data;
     }

@@ -22,10 +22,12 @@ class MyTextfield  extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).colorScheme.background)
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.background),
+            borderRadius: BorderRadius.circular(10)
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary)
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.tertiary),
+            borderRadius: BorderRadius.circular(10)
           ),
           fillColor: Theme.of(context).colorScheme.primary,
           filled: true,
